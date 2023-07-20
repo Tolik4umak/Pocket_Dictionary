@@ -2,18 +2,29 @@
 import React from 'react'
 import LoginForm from '../../components/LoginForm/LoginForm'
 import RegisterForm from '../../components/RegisterForm/RegisterForm'
+import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
 
 export default function LoginPage() {
 
-
+  const currentUser = useSelector(state => state.user.currentUser)  
+  console.log(currentUser);
 
 
   return (
-    <div>
-        <LoginForm/>
-        <br />
-        <RegisterForm/>
-    </div>
+    <>
+       { !currentUser
+       ? (
+        <div>
+            <LoginForm/>
+            <br />
+            <RegisterForm/>
+        </div> 
+       )
+       :(<Navigate to={'/main'}/>) 
+        
+        }
+    </>
   )
 }
 
