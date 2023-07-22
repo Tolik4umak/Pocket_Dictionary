@@ -12,7 +12,7 @@ export default function FormPage() {
     {
       currentUser
       ?(
-        <NewCardForm/>
+        <NewCardForm userId={currentUser.userId}/>
       )
       :(<Navigate to={'/Pocket_Dictionary'}/>) 
     }
