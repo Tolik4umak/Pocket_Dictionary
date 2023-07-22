@@ -1,0 +1,25 @@
+.nav{
+    background: #2c2c2c;
+    height: 50px;
+    width: 100%;
+    color: white;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: center;
+
+    flex: 0 0 50px;
+}
+
+.nav h2{
+    color: white;
+}
+
+.active{
+    color: #1976d2;
+}
+a{
+    color: white;
+    text-decoration: none;
+}

@@ -1,0 +1,15 @@
+.form {
+    display: grid;
+    gap: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.description{
+    min-width: 100%;
+    max-width: 410px;
+    padding: 15px;
+}
+.button{
+    height: 50px;
+}

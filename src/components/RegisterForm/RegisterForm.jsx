@@ -2,8 +2,9 @@ import { Button, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import React from 'react'
 import * as yup from 'yup'
+import s from './style.module.css'
 
-export default function RegisterForm(){
+export default function RegisterForm({setAuthMode}){
 
     const registerSchema = yup.object({
         register: yup.string().required('this field is required')
@@ -40,16 +41,20 @@ export default function RegisterForm(){
     
   
     return ( 
-        <form onSubmit={formik.handleSubmit}>
-            <TextField
-                label = 'register'
-                name='register'
-                value={formik.values.register}
-                onChange={formik.handleChange}
-                error={formik.touched.register && !!formik.errors.register }
-                helperText={formik.touched.register && formik.errors.register}              
-            />
-            <Button variant="contained" type='submit'>register</Button>
-        </form>
+        <div className={s.container}>
+            <form className={s.form} onSubmit={formik.handleSubmit}>
+                <TextField
+                    label = 'register'
+                    name='register'
+                    value={formik.values.register}
+                    onChange={formik.handleChange}
+                    error={formik.touched.register && !!formik.errors.register }
+                    helperText={formik.touched.register && formik.errors.register}              
+                />
+                <Button className={s.button} variant="contained" type='submit'>register</Button>
+            </form>
+            <Button onClick={() => setAuthMode('login')}>login </Button>
+
+        </div>
     )
   }

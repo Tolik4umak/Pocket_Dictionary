@@ -1,0 +1,33 @@
+/* .nav{
+    background: #232323;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    color: white;
+
+} */
+.nav{
+    background: #2c2c2c;
+    height: 50px;
+    width: 100%;
+    color: white;
+    position: sticky;
+    bottom: 0;
+    /* margin-top: 20px; */
+    flex: 0 0 50px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    justify-items: center;
+}
+
+.active{
+    color: #1976d2;
+}
+a{
+    color: white;
+    text-decoration: none;
+}

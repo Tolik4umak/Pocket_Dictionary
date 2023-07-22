@@ -4,8 +4,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import * as yup from 'yup'
 import { authorizeUser } from '../../store/userSlice'
+import Wrapper from '../../layout/Wrapper'
+import s from './style.module.css'
 
-export default function LoginForm()  {
+export default function LoginForm({setAuthMode})  {
 
   const dispatch = useDispatch()
 
@@ -37,17 +39,20 @@ export default function LoginForm()  {
 
   })
 
-  return (
-    <form onSubmit={formik.handleSubmit}>
-        <TextField
-            label = 'login'
-            name='login'           
-            value={formik.values.login}
-            onChange={formik.handleChange}
-            error={formik.touched.login && !!formik.errors.login}
-            helperText = {formik.touched.login && formik.errors.login}          
-        />
-        <Button variant="contained" type='submit'>login</Button>
-    </form>
+  return ( 
+      <div className={s.container}>
+        <form className={s.form} onSubmit={formik.handleSubmit}>
+            <TextField
+                label = 'login'
+                name='login'           
+                value={formik.values.login}
+                onChange={formik.handleChange}
+                error={formik.touched.login && !!formik.errors.login}
+                helperText = {formik.touched.login && formik.errors.login}          
+            />
+            <Button className={s.button} variant="contained" type='submit'>login</Button>
+        </form>
+        <Button onClick={() => setAuthMode('register')}>register </Button>
+      </div>
   )
 }

@@ -25,8 +25,9 @@ const addCardToLocal = (card) => {
 
 const removeCardFromLocal = (cardId) => {
     const curLocal = readLocal()
-    let newLocal = curLocal.filter(({id}) => id !== cardId)
+    let newDictionary = curLocal.dictionary.filter(({id}) => id !== cardId)
 
+    let newLocal = {...curLocal, dictionary: newDictionary}
     return writeToLocal(newLocal)
 } 
 
@@ -44,4 +45,10 @@ const addUserToLocal = (user) => {
 } 
 
 
-export default {readLocal, writeToLocal, addCardToLocal, removeCardFromLocal, addUserToLocal}
+export default {
+    readLocal, 
+    writeToLocal, 
+    addCardToLocal, 
+    removeCardFromLocal, 
+    addUserToLocal
+}
