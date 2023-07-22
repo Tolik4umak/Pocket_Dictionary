@@ -24,7 +24,7 @@ export default function MainPage() {
         </Wrapper>
        
       )
-      :(<Navigate to={'/'}/>)
+      :(<Navigate to={'/Pocket_Dictionary'}/>)
     }
 
     </>

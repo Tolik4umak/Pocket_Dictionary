@@ -14,7 +14,7 @@ export default function FormPage() {
       ?(
         <NewCardForm/>
       )
-      :(<Navigate to={'/'}/>) 
+      :(<Navigate to={'/Pocket_Dictionary'}/>) 
     }
     </>
     

@@ -27,7 +27,7 @@ function App() {
       
       <div style={{flex: '1 1 auto', overflow: 'auto'}}>
         <Routes>
-          <Route path='/' element={<LoginPage/>}/>
+          <Route path='/Pocket_Dictionary' element={<LoginPage/>}/>
           <Route path='/main' element={<MainPage/>}/>
           <Route path='/form' element={<FormPage/>}/>
           <Route path='/settings' element={<SettingsPage/>}/>
