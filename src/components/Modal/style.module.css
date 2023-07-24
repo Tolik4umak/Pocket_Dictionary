@@ -1,0 +1,55 @@
+.container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* right: 0;
+    bottom: 0; */
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.753);
+    z-index: 999;
+    opacity: 1;
+    transition: .4s;
+
+}
+.modal{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    border-radius: 7px;
+
+}
+
+.button{
+    flex: 0 0 50px;
+    width: 35%;
+    align-self: center;
+}
+
+.content{
+    max-height: 70vh;
+    overflow: auto;
+}
+
+.unactive{
+    opacity: 0;
+    pointer-events: none;
+    transition: .4s;
+}
+.container .modal{
+    transform: scale(1);
+    transition: .2s;
+}
+
+.unactive .modal{
+    transform: scale(0);
+    transition: .2s;
+}
+

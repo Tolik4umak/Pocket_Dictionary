@@ -21,6 +21,14 @@ export const userSlice = createSlice({
             state.list.push(payload)
             localServices.addCardToLocal(payload)
         },
+        addNewList: (state, {payload}) => {
+            const list = payload.filter((card) => {
+                const target = state.list.find(item => item.id === card.id)
+                return !target
+            })
+            state.list = [...state.list, ...list]
+            localServices.addListToLocal(payload)
+        },
         removeCard: (state, {payload}) => {
             state.list = state.list.filter(({id}) => id !== payload)
             localServices.removeCardFromLocal(payload)
@@ -28,5 +36,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const {authorizeUser, removeUser, addNewCard, removeCard} = userSlice.actions
+export const {authorizeUser, removeUser, addNewCard, removeCard, addNewList} = userSlice.actions
 export default userSlice.reducer

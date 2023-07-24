@@ -8,12 +8,19 @@ import s from './style.module.css'
 
 export default function NewCardForm({userId}) {
 
-
   const dispatch = useDispatch()  
 
   const cardShema = yup.object({
-    origin: yup.string().required('this field is required'),
-    translation: yup.string().required('this field is required')
+    origin: yup.string()
+      .required('this field is required')
+      .test('nospace', 'not allowed to start with a space', (value) => {
+        return !value.startsWith(' ');
+      }),
+    translation: yup.string()
+    .required('this field is required')
+    .test('nospace', 'not allowed to start with a space', (value) => {
+      return !value.startsWith(' ');
+    })
   })
 
   const formik = useFormik({

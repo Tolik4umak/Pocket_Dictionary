@@ -7,7 +7,11 @@ import s from './style.module.css'
 export default function RegisterForm({setAuthMode}){
 
     const registerSchema = yup.object({
-        register: yup.string().required('this field is required')
+        register: yup.string()
+            .required('this field is required')
+            .test('nospace', 'not allowed to start with a space', (value) => {
+                return !value.startsWith(' ');
+              })
     })
 
 

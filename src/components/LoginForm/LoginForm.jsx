@@ -12,7 +12,11 @@ export default function LoginForm({setAuthMode})  {
   const dispatch = useDispatch()
 
   const loginSchema = yup.object({
-    login: yup.string().required('field is required')
+    login: yup.string()
+      .required('field is required')
+      .test('nospace', 'not allowed to start with a space', (value) => {
+        return !value.startsWith(' ');
+      })
   })
 
 
