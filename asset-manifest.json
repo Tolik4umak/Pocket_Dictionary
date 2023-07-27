@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Pocket_Dictionary/static/css/main.2e216a11.css",
-    "main.js": "/Pocket_Dictionary/static/js/main.81fe4bad.js",
+    "main.css": "/Pocket_Dictionary/static/css/main.a449b155.css",
+    "main.js": "/Pocket_Dictionary/static/js/main.d8cda6a1.js",
     "index.html": "/Pocket_Dictionary/index.html",
-    "main.2e216a11.css.map": "/Pocket_Dictionary/static/css/main.2e216a11.css.map",
-    "main.81fe4bad.js.map": "/Pocket_Dictionary/static/js/main.81fe4bad.js.map"
+    "main.a449b155.css.map": "/Pocket_Dictionary/static/css/main.a449b155.css.map",
+    "main.d8cda6a1.js.map": "/Pocket_Dictionary/static/js/main.d8cda6a1.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e216a11.css",
-    "static/js/main.81fe4bad.js"
+    "static/css/main.a449b155.css",
+    "static/js/main.d8cda6a1.js"
   ]
 }
