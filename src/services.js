@@ -48,6 +48,18 @@ const removeCardFromLocal = (cardId) => {
     return writeToLocal(newLocal)
 } 
 
+const editCardInLocal = (curCard) => {
+    const curLocal = readLocal()
+    let newDictionary = curLocal.dictionary.map((card) => {
+        if(card.id === curCard.id && card.userId === curCard.userId){
+            return curCard
+        }
+        return card
+    })
+
+    let newLocal = {...curLocal, dictionary: newDictionary}
+    return writeToLocal(newLocal)
+} 
 
 const addUserToLocal = (user) => {
     const curLocal = readLocal()
@@ -68,5 +80,6 @@ export default {
     addCardToLocal, 
     removeCardFromLocal, 
     addUserToLocal,
-    addListToLocal
+    addListToLocal,
+    editCardInLocal
 }

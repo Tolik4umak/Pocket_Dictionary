@@ -1,13 +1,16 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { removeCard } from '../../store/userSlice'
+import { editCard, removeCard } from '../../store/userSlice'
 import Modal from '../Modal/Modal'
+import EditIcon from '@mui/icons-material/Edit';
+import NewCardForm from '../NewCardForm/NewCardForm'
 
 
 export default function SingleCard({id, userId, origin, translation, description, picture}) {
 
   const [isActive, setIsActive] = useState(false)  
+  const [isEdit, setIsEdit] = useState(false)  
   const dispatch = useDispatch()  
 
   const handleRemove = () => {
@@ -18,9 +21,19 @@ export default function SingleCard({id, userId, origin, translation, description
     setIsActive(true)
   }
 
+  const handleEdit = () => {
+    setIsEdit(true)
+  }
+
+  const editCurCard = (value) => {
+    const card = {...value, id, userId}
+    dispatch(editCard(card))
+    setIsEdit(false)
+  }
+
   return (
    <>
-        <Card sx={{maxWidth: 345, boxShadow: 5, width: '100%'}}>
+        <Card sx={{maxWidth: 345, boxShadow: 5, width: '100%', display: "flex", flexDirection: 'column'}}>
             <CardActionArea>
                 {
                     picture && (
@@ -47,13 +60,19 @@ export default function SingleCard({id, userId, origin, translation, description
                     } */}
                 </CardContent>
             </CardActionArea>
-            <CardActions>
+            <CardActions style={{display: 'flex', flex: '1 1 auto', alignItems: 'end'}}>
+                <Button color='error' onClick={handleRemove}>REMOVE</Button>
                 {description && <Button onClick={handleModal}>MORE</Button>}
-                <Button onClick={handleRemove}>REMOVE</Button>
+                <Button onClick={handleEdit} style={{display: 'flex', flex: '1 1 auto', justifyContent: 'end' }}>
+                    <EditIcon fontSize='small' color='primary'/>
+                </Button>
             </CardActions>
         </Card>
         <Modal isActive={isActive} setIsActive={setIsActive}>
             {description}
+        </Modal>
+        <Modal isActive={isEdit} setIsActive={setIsEdit}>
+            <NewCardForm buttonName={'Edit'} {...{origin, translation, description, picture}} handleForm={editCurCard}/>
         </Modal>
    </>
   )

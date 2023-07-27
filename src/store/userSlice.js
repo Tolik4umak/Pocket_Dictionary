@@ -32,9 +32,14 @@ export const userSlice = createSlice({
         removeCard: (state, {payload}) => {
             state.list = state.list.filter(({id}) => id !== payload)
             localServices.removeCardFromLocal(payload)
+        },
+        editCard: (state, {payload}) => {
+            state.list = state.list.map((card) => card.id === payload.id ? payload : card)
+            localServices.editCardInLocal(payload)
         }
+
     }
 })
 
-export const {authorizeUser, removeUser, addNewCard, removeCard, addNewList} = userSlice.actions
+export const {authorizeUser, removeUser, addNewCard, removeCard, addNewList, editCard} = userSlice.actions
 export default userSlice.reducer

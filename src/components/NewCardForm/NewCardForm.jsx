@@ -1,14 +1,10 @@
 import { Button, TextField, TextareaAutosize } from '@mui/material'
 import { useFormik } from 'formik'
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { addNewCard } from '../../store/userSlice'
 import * as yup from 'yup'
 import s from './style.module.css'
 
-export default function NewCardForm({userId}) {
-
-  const dispatch = useDispatch()  
+export default function NewCardForm({origin, translation , picture, description, handleForm, buttonName }) {
 
   const cardShema = yup.object({
     origin: yup.string()
@@ -25,16 +21,13 @@ export default function NewCardForm({userId}) {
 
   const formik = useFormik({
     initialValues: {
-        origin: '',
-        translation: '',
-        picture: '',
-        description: ''
+        origin: `${origin ?? ''}`,
+        translation: `${translation ?? ''}`,
+        picture: `${picture ?? ''}`,
+        description: `${description ?? ''}`
     },
-    onSubmit: (value, {resetForm}) => {
-        const card = {...value, id: Date.now(), userId }
-        console.log(card)
-        dispatch(addNewCard(card))
-        resetForm()
+    onSubmit: (value, funk) => {
+        handleForm(value, funk)
     },
     validationSchema: cardShema
   })  
@@ -81,7 +74,7 @@ export default function NewCardForm({userId}) {
             variant="contained"
             className={s.button}
         >
-                Create Card
+                {buttonName ?? 'Create Card'}
         </Button>
     </form>
   )
