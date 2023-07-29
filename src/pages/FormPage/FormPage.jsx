@@ -10,7 +10,7 @@ export default function FormPage() {
   const dispatch = useDispatch()
 
   const addCard = (value, {resetForm}) => {
-    const card = {...value, id: Date.now(), userId:  currentUser.userId}
+    const card = {...value, id: Date.now(), userId:  currentUser.userId , progress: 0}
     dispatch(addNewCard(card))
     resetForm()
   }

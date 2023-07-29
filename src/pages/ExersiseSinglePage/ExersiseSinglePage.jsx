@@ -1,0 +1,95 @@
+import React, { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { Button, Typography } from '@mui/material'
+import Wrapper from '../../layout/Wrapper'
+import s from './style.module.css'
+
+export default function ExersiseSinglePage() {
+
+  const list = useSelector(({user}) => user.list)
+  const [tempExercise, setTempExercise] = useState('')
+  const [answerMode, setAnswerMode] = useState(true)
+  const {type} = useParams()
+
+  
+
+  useEffect(() => {
+    randomWord()
+  },[])
+
+  const randomWord = () => {
+    const curList = list.slice()
+          .sort(() => Math.random() - 0.5)
+          .slice(0,5)
+          .map(card => ({...card, status: ''}))
+    const randomIndex = Math.round(Math.random() * 4)
+    const targetWord = curList[randomIndex]
+
+    const tempEx = {
+      curList,
+      targetWord
+    }
+
+    setTempExercise(tempEx)
+    setAnswerMode(true)
+
+  }
+
+  const checkAnswer = (card , e) => {
+    const answer = card.id === tempExercise.targetWord.id
+
+    if(answer){
+      card.status = true
+    }else{
+      card.status = false
+      tempExercise.curList.find(({id}) => id === tempExercise.targetWord.id ).status = true
+    }
+    setTempExercise({...tempExercise})
+    setAnswerMode(false)
+  }
+
+
+  return (
+    <Wrapper>
+      {
+        tempExercise && (
+        <div className={s.container}>
+
+          <Typography variant="h5" component="h2" >
+            {type === 'origin' ? tempExercise.targetWord.origin: tempExercise.targetWord.translation}
+          </Typography>
+
+          <div className={s.list}>
+            {
+              tempExercise.curList.map((card) => {
+                return (
+                  <Button
+                    key={card.id}
+                    variant={ card.status ? 'contained' : card.status === false ? 'contained': 'outlined'}
+                     sx={{p: 1}}
+                    color={card.status ? 'success' : card.status === false ? 'error': 'primary'}
+                    onClick={answerMode ? (e) => checkAnswer(card, e) : randomWord}
+                    >
+                        {type === 'origin' ? card.translation : card.origin}
+                  </Button>
+                )
+              })
+            }
+          </div>
+
+          <Button
+            variant='contained'
+            onClick={randomWord}
+            sx={{p: 2}}
+          >
+            Next
+          </Button>
+
+        </div>
+        )
+      }
+    </Wrapper>
+
+  )
+}

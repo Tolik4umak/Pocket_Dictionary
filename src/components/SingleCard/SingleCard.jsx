@@ -7,7 +7,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import NewCardForm from '../NewCardForm/NewCardForm'
 
 
-export default function SingleCard({id, userId, origin, translation, description, picture}) {
+export default function SingleCard({id, userId, origin, translation, description, picture, progress}) {
 
   const [isActive, setIsActive] = useState(false)  
   const [isEdit, setIsEdit] = useState(false)  
