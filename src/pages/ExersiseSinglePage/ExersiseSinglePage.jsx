@@ -15,7 +15,7 @@ export default function ExersiseSinglePage() {
   
 
   useEffect(() => {
-    randomWord()
+    if(list.length > 4) randomWord()
   },[])
 
   const randomWord = () => {
@@ -53,7 +53,7 @@ export default function ExersiseSinglePage() {
   return (
     <Wrapper>
       {
-        tempExercise && (
+        tempExercise ? (
         <div className={s.container}>
 
           <Typography variant="h5" component="h2" >
@@ -87,6 +87,15 @@ export default function ExersiseSinglePage() {
           </Button>
 
         </div>
+        ) : (
+          <div className={s.container}>
+            <Typography variant="h5" component="h2" color={'secondary.light'} >
+              In order to this exercise be available need to have minimum 5 cards in your dictionary
+              <br />
+              <br />
+              Current cards : {list.length}
+            </Typography>
+          </div>
         )
       }
     </Wrapper>

@@ -30,7 +30,7 @@ export const userSlice = createSlice({
             localServices.addListToLocal(payload)
         },
         removeCard: (state, {payload}) => {
-            state.list = state.list.filter(({id}) => id !== payload)
+            state.list = state.list.filter(({id}) => id !== payload.id)
             localServices.removeCardFromLocal(payload)
         },
         editCard: (state, {payload}) => {

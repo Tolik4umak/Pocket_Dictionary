@@ -7,14 +7,16 @@ import EditIcon from '@mui/icons-material/Edit';
 import NewCardForm from '../NewCardForm/NewCardForm'
 
 
-export default function SingleCard({id, userId, origin, translation, description, picture, progress}) {
+export default function SingleCard(curCard) {
+
+  const {id, userId, origin, translation, description, picture, progress} = curCard 
 
   const [isActive, setIsActive] = useState(false)  
   const [isEdit, setIsEdit] = useState(false)  
   const dispatch = useDispatch()  
 
   const handleRemove = () => {
-    dispatch(removeCard(id))
+    dispatch(removeCard(curCard))
   }  
 
   const handleModal = () => {
@@ -26,7 +28,7 @@ export default function SingleCard({id, userId, origin, translation, description
   }
 
   const editCurCard = (value) => {
-    const card = {...value, id, userId}
+    const card = {...value, id, userId, progress}
     dispatch(editCard(card))
     setIsEdit(false)
   }

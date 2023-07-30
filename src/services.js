@@ -40,9 +40,9 @@ const addListToLocal = (list) => {
     return writeToLocal(newLocal)
 } 
 
-const removeCardFromLocal = (cardId) => {
+const removeCardFromLocal = (card) => {
     const curLocal = readLocal()
-    let newDictionary = curLocal.dictionary.filter(({id}) => id !== cardId)
+    let newDictionary = curLocal.dictionary.filter(({id, userId}) => !(userId === card.userId && id === card.id) )
 
     let newLocal = {...curLocal, dictionary: newDictionary}
     return writeToLocal(newLocal)

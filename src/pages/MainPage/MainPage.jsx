@@ -5,6 +5,7 @@ import { removeUser } from '../../store/userSlice'
 import CardsList from '../../components/CardsList/CardsList'
 import Wrapper from '../../layout/Wrapper'
 import Search from '../../components/Search/Search'
+import CardsCollections from '../../components/CardsCollections/CardsCollections'
 
 export default function MainPage() {
 
@@ -30,7 +31,11 @@ export default function MainPage() {
       ?(
         <Wrapper>
           <Search handleList={handleList} />
-          <CardsList list={filteredList}/>
+          {
+            currentList.length 
+            ? (<CardsList list={filteredList}/>) 
+            : (<CardsCollections/>)
+          }
         </Wrapper>
        
       )
