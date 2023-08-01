@@ -23,10 +23,6 @@ export default function SettingsPage() {
     navigate('/Pocket_Dictionary')
   }
 
-  const collection = () => {
-    navigator.clipboard.writeText(list)
-  }
-
   return (
     <div>
       <button onClick={copy}>Share</button>
@@ -34,10 +30,8 @@ export default function SettingsPage() {
         <textarea name="list"></textarea>
         <button type='submit'>paste</button>
       </form>
-      <br />
-      <br />
-      <button onClick={collection} type='submit'>collection</button>
 
     </div>
   )
 }
+
