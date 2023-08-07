@@ -21,7 +21,7 @@ export default function AuthPage() {
             { authMode === 'register' &&  <RegisterForm setAuthMode={setAuthMode}/>}
         </Wrapper> 
        )
-       :(<Navigate to={'/main'}/>) 
+       :(<Navigate to={'/Pocket_Dictionary/main'}/>) 
           
         }
     </>

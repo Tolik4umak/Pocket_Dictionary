@@ -59,10 +59,10 @@ function App() {
       <div style={{flex: '1 1 auto', overflow: 'auto'}}>
         <Routes>
           <Route path='/Pocket_Dictionary' element={<LoginPage/>}/>
-          <Route path='/main' element={<MainPage/>}/>
-          <Route path='/form' element={<FormPage/>}/>
-          {currentUser && <Route path='/settings' element={<SettingsPage/>}/>}
-          {currentUser && <Route path='/exercises' element={<ExercisesPage/>}/>}
+          <Route path='/Pocket_Dictionary/main' element={<MainPage/>}/>
+          <Route path='/Pocket_Dictionary/form' element={<FormPage/>}/>
+          {currentUser && <Route path='/Pocket_Dictionary/settings' element={<SettingsPage/>}/>}
+          {currentUser && <Route path='/Pocket_Dictionary/exercises' element={<ExercisesPage/>}/>}
           {currentUser && <Route path='/Pocket_Dictionary/exercises/:type' element={<ExersiseSinglePage/>}/>}
           <Route path='/*' element={<MainPage/>}/>
         </Routes>

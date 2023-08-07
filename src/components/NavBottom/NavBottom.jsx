@@ -17,10 +17,10 @@ export default function NavBottom() {
   const isActive = ({isActive}) => isActive ? s.active: '' 
   return (
     <div className={s.nav}>
-        <NavLink className={isActive} to={'/settings'}> <ManageAccountsIcon/></NavLink>
-        <NavLink className={isActive} to={'/form'}> <NoteAddIcon/></NavLink>
-        <NavLink className={isActive} to={'/main'}><ViewListIcon/></NavLink>
-        <NavLink className={isActive} to={'/exercises'}> <FitnessCenterIcon/></NavLink>
+        <NavLink className={isActive} to={'/Pocket_Dictionary/settings'}> <ManageAccountsIcon/></NavLink>
+        <NavLink className={isActive} to={'/Pocket_Dictionary/form'}> <NoteAddIcon/></NavLink>
+        <NavLink className={isActive} to={'/Pocket_Dictionary/main'}><ViewListIcon/></NavLink>
+        <NavLink className={isActive} to={'/Pocket_Dictionary/exercises'}> <FitnessCenterIcon/></NavLink>
         <LogoutIcon onClick={logout}/>
     </div>
   )

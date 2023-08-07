@@ -23,7 +23,7 @@ export default function ExercisesPage() {
           </Button>
         </Link>
 
-        <Link to='/exercises'>
+        <Link to='/Pocket_Dictionary/exercises'>
           <Button variant="outlined" size="large"  sx={{p: 5, width: '100%'}} disabled>
               match the pairs
           </Button>
