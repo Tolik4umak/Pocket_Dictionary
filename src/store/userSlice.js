@@ -5,7 +5,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState: {
         currentUser: null,
-        list: []
+        list: [],
     },
     reducers: {
         authorizeUser: (state, {payload}) => {

@@ -3,15 +3,16 @@ import { hundredEngWords } from '../../dictionaryCollections'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNewList } from '../../store/userSlice'
 
-export default function CardsCollections() {
+export default function CardsCollections({currentUser}) {
 
 
+    const {userId} = currentUser
     const dispatch = useDispatch()
 
 
     const click = () => {
         const list = JSON.parse(JSON.stringify(hundredEngWords))
-        const tempList = list.map(c => ({...c, progress: 0}))
+        const tempList = list.map(c => ({...c, progress: 0, userId}))
         dispatch(addNewList(tempList))
     }
 

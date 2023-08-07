@@ -18,7 +18,7 @@ export default function SettingsPage() {
   const past = (e) => {
     e.preventDefault()
     const list = JSON.parse(e.target.list.value)
-    const userList = list.map((card) => ({...card, userId}))
+    const userList = list.map((card) => ({...card, progress: 0, userId}))
     dispatch(addNewList(userList))
     navigate('/Pocket_Dictionary')
   }

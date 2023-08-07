@@ -34,7 +34,7 @@ export default function MainPage() {
           {
             currentList.length 
             ? (<CardsList list={filteredList}/>) 
-            : (<CardsCollections/>)
+            : (<CardsCollections currentUser={currentUser}/>)
           }
         </Wrapper>
        

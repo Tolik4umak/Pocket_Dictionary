@@ -23,7 +23,7 @@
 .input_clue{
     position: absolute;
     top: -22px;
-    left: 80px;
+    left: 0;
     background: #1976d2;
     color: white;
     border-radius: 5px;

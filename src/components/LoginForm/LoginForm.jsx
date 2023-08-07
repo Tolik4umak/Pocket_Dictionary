@@ -56,7 +56,9 @@ export default function LoginForm({setAuthMode})  {
             />
             <Button className={s.button} variant="contained" type='submit'>login</Button>
         </form>
-        <Button onClick={() => setAuthMode('register')}>register </Button>
+        {/* <Button onClick={() => setAuthMode('register')}>register </Button> */}
+        <p style={{margin: '0 auto'}}>Don't have an account ? <Button onClick={() => setAuthMode('register')}>Sing Up </Button> </p>
+
       </div>
   )
 }

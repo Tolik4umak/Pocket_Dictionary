@@ -3,6 +3,7 @@ import { useFormik } from 'formik'
 import React, { useEffect, useState } from 'react'
 import * as yup from 'yup'
 import s from './style.module.css'
+import { useSelector } from 'react-redux'
 
 
 const req = (from, to, func) => {
@@ -23,10 +24,12 @@ const req = (from, to, func) => {
 
 export default function NewCardForm({origin, translation , picture, description, handleForm, buttonName }) {
 
+  const {langFrom , langTo} = useSelector(({user}) => user.currentUser)
+
   const [fetchTranslate, setFetchTranslate] = useState('')
   const [fetchOrigin, setFetchOrigin] = useState('')
-  const translateFromOrigin = req('en', 'ru', setFetchTranslate)
-  const translateFromForing = req('ru', 'en', setFetchOrigin)
+  const translateFromOrigin = req(langFrom || 'en', langTo || 'ru', setFetchTranslate)
+  const translateFromForing = req(langTo || 'ru', langFrom || 'en', setFetchOrigin)
   
   const cardShema = yup.object({
     origin: yup.string()
@@ -90,7 +93,7 @@ export default function NewCardForm({origin, translation , picture, description,
   return (
     <form className={s.form} onSubmit={formik.handleSubmit}>
         <div className={s.input_wrapper}>
-          {fetchOrigin && <p onClick={fillOrigin} className={s.input_clue}>{fetchOrigin}</p>}
+          {(fetchOrigin && !formik.values.origin) && <p onClick={fillOrigin} className={s.input_clue}>{fetchOrigin}</p>}
           <TextField
               variant = 'outlined'
               label = 'origin worg'
@@ -106,7 +109,7 @@ export default function NewCardForm({origin, translation , picture, description,
           />
         </div>
         <div className={s.input_wrapper}>
-          {fetchTranslate && <p onClick={fillTranslation} className={s.input_clue}>{fetchTranslate}</p>}
+          {(fetchTranslate && !formik.values.translation) && <p onClick={fillTranslation} className={s.input_clue}>{fetchTranslate}</p>}
           <TextField
               variant = 'outlined'
               label = 'translation'

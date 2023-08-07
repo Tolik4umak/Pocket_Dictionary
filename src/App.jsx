@@ -7,14 +7,44 @@ import SettingsPage from './pages/SettingsPage/SettingsPage';
 import ExercisesPage from './pages/ExercisesPage/ExercisesPage';
 import NavTop from './components/NavTop/NavTop';
 import NavBottom from './components/NavBottom/NavBottom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ExersiseSinglePage from './pages/ExersiseSinglePage/ExersiseSinglePage';
+import { useEffect } from 'react';
+import { removeUser } from './store/userSlice';
 
 
 
 function App() {
 
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    const userActivity = localStorage.getItem('userActivity')
+    const currentTime = Date.now()
+    const timeDiff = currentTime - userActivity
+    
+    if(timeDiff > 2000*60) dispatch(removeUser())
+ 
+  },[])
+ 
   const currentUser = useSelector(({user}) => user.currentUser?.userName)
+
+  useEffect(() => {
+    localStorage.setItem('userActivity', Date.now())
+    if(currentUser){
+      const writeDate = () => {
+        localStorage.setItem('userActivity', Date.now())
+      }
+      window.addEventListener('touchstart', writeDate)
+      window.addEventListener('mousemove', writeDate)
+  
+      return () => {
+        window.removeEventListener('touchstart', writeDate)
+        window.removeEventListener('mousemove', writeDate)
+      }
+    }
+
+  },[currentUser])
 
   return (
     <div className="App" style={{
