@@ -24,10 +24,10 @@
     justify-items: center;
 }
 
-.active{
+.nav .active{
     color: #1976d2;
 }
-a{
+.nav a{
     color: white;
     text-decoration: none;
 }

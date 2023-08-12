@@ -11,19 +11,19 @@ export default function ExercisesPage() {
 
       <div className={s.container}>
 
-        <Link to='/Pocket_Dictionary/exercises/origin'>
+        <Link to='/Pocket_Dictionary/exercise/origin'>
           <Button variant="outlined" size="large" sx={{p: 5, width: '100%'}}>
               translation - word
           </Button>
         </Link>
       
-        <Link to='/Pocket_Dictionary/exercises/translation'>
+        <Link to='/Pocket_Dictionary/exercise/translation'>
           <Button variant="outlined" size="large"sx={{p: 5, width: '100%'}}>
               word - translation
           </Button>
         </Link>
 
-        <Link to='/Pocket_Dictionary/exercises'>
+        <Link>
           <Button variant="outlined" size="large"  sx={{p: 5, width: '100%'}} disabled>
               match the pairs
           </Button>

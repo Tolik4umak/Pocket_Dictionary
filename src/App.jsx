@@ -11,6 +11,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import ExersiseSinglePage from './pages/ExersiseSinglePage/ExersiseSinglePage';
 import { useEffect } from 'react';
 import { removeUser } from './store/userSlice';
+import UserInfo from './components/UserInfo/UserInfo';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -63,16 +66,19 @@ function App() {
           <Route path='/Pocket_Dictionary/form' element={<FormPage/>}/>
           {currentUser && <Route path='/Pocket_Dictionary/settings' element={<SettingsPage/>}/>}
           {currentUser && <Route path='/Pocket_Dictionary/exercises' element={<ExercisesPage/>}/>}
-          {currentUser && <Route path='/Pocket_Dictionary/exercises/:type' element={<ExersiseSinglePage/>}/>}
+          {currentUser && <Route path='/Pocket_Dictionary/exercise/:type' element={<ExersiseSinglePage/>}/>}
+
+          {currentUser && <Route path='/Pocket_Dictionary/setting/userinfo' element={<UserInfo/>}/>}
+        
+         
           <Route path='/*' element={<MainPage/>}/>
         </Routes>
       </div>
       
+      
       {currentUser && (<NavBottom/>)}
 
-      
-
-
+      <ToastContainer position="top-center" autoClose={2000} closeOnClick/>
     </div>
   );
 }
