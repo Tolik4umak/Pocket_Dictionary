@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { Button, Typography } from '@mui/material'
 import Wrapper from '../../layout/Wrapper'
 import s from './style.module.css'
-import { editCard } from '../../store/userSlice'
 
 export default function ExersiseSinglePage() {
 
@@ -12,8 +11,6 @@ export default function ExersiseSinglePage() {
   const [tempExercise, setTempExercise] = useState('')
   const [answerMode, setAnswerMode] = useState(true)
   const {type} = useParams()
-
-  const dispatch = useDispatch()
 
   
 
@@ -23,7 +20,9 @@ export default function ExersiseSinglePage() {
 
   const randomWord = () => {
     const curList = list.slice()
-          .sort((a,b) => Math.random() - 0.5 + (a.progress - b.progress)/200)
+          .sort((a,b) => {
+            return Math.random() - 0.5
+          })
           .slice(0,5)
           .map(card => ({...card, status: ''}))
     const randomIndex = Math.round(Math.random() * 4)
@@ -41,15 +40,12 @@ export default function ExersiseSinglePage() {
 
   const checkAnswer = (card , e) => {
     const answer = card.id === tempExercise.targetWord.id
-    const target = list.slice().find(({id}) => id === tempExercise.targetWord.id)
 
     if(answer){
       card.status = true
-      if( target.progress < 20 ) dispatch(editCard({...target, progress: target.progress + 1}))
     }else{
       card.status = false
       tempExercise.curList.find(({id}) => id === tempExercise.targetWord.id ).status = true
-      if( target.progress > 0 ) dispatch(editCard({...target, progress: target.progress - 1}))
     }
     setTempExercise({...tempExercise})
     setAnswerMode(false)

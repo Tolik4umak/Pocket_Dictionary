@@ -1,4 +1,6 @@
 import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { editCard, removeCard } from '../../store/userSlice'
@@ -33,9 +35,15 @@ export default function SingleCard(curCard) {
     setIsEdit(false)
   }
 
+  const handleReset = () => {
+    dispatch(editCard({...curCard, progress: 0}))
+  }
+
+
   return (
    <>
         <Card sx={{maxWidth: 345, boxShadow: 5, width: '100%', display: "flex", flexDirection: 'column'}}>
+
             <CardActionArea>
                 {
                     picture && (
@@ -53,29 +61,38 @@ export default function SingleCard(curCard) {
                     <Typography variant='h6' color='text.secondary'>
                         {translation}
                     </Typography>
-                    {/* {
-                        description && (
-                            <Typography variant='body2' color='text.secondary'>
-                                {description}
-                            </Typography>
-                        )
-                    } */}
                 </CardContent>
             </CardActionArea>
-            <CardActions style={{display: 'flex', flex: '1 1 auto', alignItems: 'end'}}>
+            
+            <CardActions style={{display: 'flex', flex: '1 1 auto', alignItems: 'start'}}>
                 <Button color='error' onClick={handleRemove}>REMOVE</Button>
                 {description && <Button onClick={handleModal}>MORE</Button>}
+                <Button color='success' onClick={handleReset}>reset</Button>
                 <Button onClick={handleEdit} style={{display: 'flex', flex: '1 1 auto', justifyContent: 'end' }}>
                     <EditIcon fontSize='small' color='primary'/>
                 </Button>
             </CardActions>
+
+            <LinearProgress  
+                variant="determinate" 
+                value={progress*5} 
+                color='success'
+                sx={{
+                    height: '5px',
+                    backgroundColor: '#e1e1e1',
+                }}
+            />  
+
         </Card>
+
+
         <Modal isActive={isActive} setIsActive={setIsActive}>
             {description}
         </Modal>
         <Modal isActive={isEdit} setIsActive={setIsEdit}>
             <NewCardForm buttonName={'Edit'} {...{origin, translation, description, picture}} handleForm={editCurCard}/>
         </Modal>
+
    </>
   )
 }
