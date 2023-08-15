@@ -73,6 +73,19 @@ const addUserToLocal = (user) => {
     return writeToLocal(newLocal)
 } 
 
+const refreshUserScoreLocal = (userId, score) => {
+    const curLocal = readLocal()
+    const newUsers = curLocal.users.map(user => {
+        if(user.userId === userId){
+            return {...user, userScore: score}
+        }
+        return user
+    })
+
+    let newLocal = {...curLocal, users: newUsers}
+    return writeToLocal(newLocal)
+}
+
 
 export default {
     readLocal, 
@@ -81,5 +94,6 @@ export default {
     removeCardFromLocal, 
     addUserToLocal,
     addListToLocal,
-    editCardInLocal
+    editCardInLocal,
+    refreshUserScoreLocal
 }

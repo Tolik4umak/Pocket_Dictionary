@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import localServices from '../services'
 
 export const userSlice = createSlice({
@@ -36,10 +36,18 @@ export const userSlice = createSlice({
         editCard: (state, {payload}) => {
             state.list = state.list.map((card) => card.id === payload.id ? payload : card)
             localServices.editCardInLocal(payload)
+        },
+        refreshUserScore: (state, {payload}) => {
+            const {correct , wrong} = state.currentUser.userScore ?? {correct: 0, wrong: 0}
+            
+            if((correct - wrong < payload.correct - payload.wrong) || (correct === 0 && wrong === 0)){
+                state.currentUser = {...state.currentUser, userScore: payload}
+                localServices.refreshUserScoreLocal(state.currentUser.userId , payload)
+            }
         }
 
     }
 })
 
-export const {authorizeUser, removeUser, addNewCard, removeCard, addNewList, editCard} = userSlice.actions
+export const {authorizeUser, removeUser, addNewCard, removeCard, addNewList, editCard, refreshUserScore} = userSlice.actions
 export default userSlice.reducer
