@@ -65,7 +65,7 @@ export default function ExersiseSinglePage() {
 
     if(answer){
       card.status = true
-      if( target.progress < 20 ) dispatch(editCard({...target, progress: target.progress + 10}))
+      if( target.progress < 20 ) dispatch(editCard({...target, progress: target.progress + 1}))
       score.current.correct += 1  
     }else{
       card.status = false
@@ -131,7 +131,7 @@ export default function ExersiseSinglePage() {
               <span className={s.score_correct}> {score.current.correct}</span> /
               <span className={s.score_wrong}> {score.current.wrong}</span>
             </Typography>
-            
+
             <Typography variant="h5" component="h2" color={'secondary.light'} >
               In order to this exercise be available need to have more then 10 (not learned) cards in your dictionary
               <br />
