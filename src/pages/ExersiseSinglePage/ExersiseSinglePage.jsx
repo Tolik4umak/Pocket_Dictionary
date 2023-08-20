@@ -8,7 +8,7 @@ import { editCard, refreshUserScore } from '../../store/userSlice'
 
 export default function ExersiseSinglePage() {
 
-  const list = useSelector(({user}) => user.list)
+  const list = useSelector(({user}) => user.list.filter(card => card.progress < 20))
   const [tempExercise, setTempExercise] = useState('')
   const [answerMode, setAnswerMode] = useState(true)
   const {type} = useParams()
@@ -19,6 +19,9 @@ export default function ExersiseSinglePage() {
 
   useEffect(() => {
     if(list.length > 10) randomWord()
+  },[])
+
+  useEffect(() => {
 
     return () =>  {
       if(score.current.correct || score.current.wrong) dispatch(refreshUserScore(score.current))
@@ -46,8 +49,13 @@ export default function ExersiseSinglePage() {
    
     buffer.current.unshift(tempEx.targetWord)
     buffer.current.pop()
-    setTempExercise(tempEx)
-    setAnswerMode(true)
+
+    if(list.length < 11){
+      setTempExercise('')
+    }else{
+      setTempExercise(tempEx)
+      setAnswerMode(true)
+    }
 
   }
 
@@ -57,7 +65,7 @@ export default function ExersiseSinglePage() {
 
     if(answer){
       card.status = true
-      if( target.progress < 20 ) dispatch(editCard({...target, progress: target.progress + 1}))
+      if( target.progress < 20 ) dispatch(editCard({...target, progress: target.progress + 10}))
       score.current.correct += 1  
     }else{
       card.status = false
@@ -117,8 +125,15 @@ export default function ExersiseSinglePage() {
         </div>
         ) : (
           <div className={s.container}>
+
+            <Typography className={s.score} variant="h6" component="p" >
+              Score 
+              <span className={s.score_correct}> {score.current.correct}</span> /
+              <span className={s.score_wrong}> {score.current.wrong}</span>
+            </Typography>
+            
             <Typography variant="h5" component="h2" color={'secondary.light'} >
-              In order to this exercise be available need to have minimum 11 cards in your dictionary
+              In order to this exercise be available need to have more then 10 (not learned) cards in your dictionary
               <br />
               <br />
               Current cards : {list.length}

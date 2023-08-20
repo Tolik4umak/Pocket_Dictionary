@@ -75,7 +75,7 @@ export default function SingleCard(curCard) {
 
             <LinearProgress  
                 variant="determinate" 
-                value={progress*5} 
+                value={progress * 5 > 100 ? 100 : progress * 5 } 
                 color='success'
                 sx={{
                     height: '5px',
