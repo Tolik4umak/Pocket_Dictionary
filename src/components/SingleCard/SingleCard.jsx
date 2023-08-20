@@ -7,6 +7,7 @@ import { editCard, removeCard } from '../../store/userSlice'
 import Modal from '../Modal/Modal'
 import EditIcon from '@mui/icons-material/Edit';
 import NewCardForm from '../NewCardForm/NewCardForm'
+import CardDescription from '../CardDescription/CardDescription';
 
 
 export default function SingleCard(curCard) {
@@ -87,7 +88,7 @@ export default function SingleCard(curCard) {
 
 
         <Modal isActive={isActive} setIsActive={setIsActive}>
-            {description}
+            <CardDescription description={description}/>
         </Modal>
         <Modal isActive={isEdit} setIsActive={setIsEdit}>
             <NewCardForm buttonName={'Edit'} {...{origin, translation, description, picture}} handleForm={editCurCard}/>

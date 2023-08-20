@@ -6,10 +6,16 @@
     padding: 30px 20px;
 }
 .description{
-    min-width: 100%;
-    max-width: 410px;
+    resize: none;
     padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
 }
+.description:focus-visible{
+    outline: 1px solid #1976d2;
+    border: 1px solid #1976d2;
+}
+
 .button{
     height: 50px;
 }
