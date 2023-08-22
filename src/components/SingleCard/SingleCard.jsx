@@ -8,7 +8,7 @@ import Modal from '../Modal/Modal'
 import EditIcon from '@mui/icons-material/Edit';
 import NewCardForm from '../NewCardForm/NewCardForm'
 import CardDescription from '../CardDescription/CardDescription';
-
+import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 
 export default function SingleCard(curCard) {
 
@@ -41,9 +41,27 @@ export default function SingleCard(curCard) {
   }
 
 
+  const speech = (word) => {
+    speechSynthesis.speak(
+        new SpeechSynthesisUtterance(word)
+    )
+  }
+
+
+
   return (
    <>
-        <Card sx={{maxWidth: 345, boxShadow: 5, width: '100%', display: "flex", flexDirection: 'column'}}>
+        <Card 
+            sx={
+                {
+                    maxWidth: 345, 
+                    boxShadow: 5, 
+                    width: '100%', 
+                    display: "flex", 
+                    flexDirection: 'column' 
+                }
+            }
+        >
 
             <CardActionArea>
                 {
@@ -57,7 +75,9 @@ export default function SingleCard(curCard) {
                 }
                 <CardContent>
                     <Typography gutterBottom variant='h5' component='div'>
-                        {origin}
+                        {origin} 
+                        <VolumeUpIcon  onClick={() => speech(origin)}/>
+                    
                     </Typography>
                     <Typography variant='h6' color='text.secondary'>
                         {translation}
