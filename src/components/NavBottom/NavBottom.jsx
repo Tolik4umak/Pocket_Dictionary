@@ -1,6 +1,6 @@
 import React from 'react'
 import s from'./style.module.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { removeUser } from '../../store/userSlice'
@@ -11,8 +11,13 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 export default function NavBottom() {
-  const dispatch = useDispatch()  
-  const logout = () => dispatch(removeUser())  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()  
+  const logout = () => {
+    navigate('/')
+    setTimeout(() => dispatch(removeUser()), 1000)
+    
+  }  
 
   const isActive = ({isActive}) => isActive ? s.active: '' 
   return (

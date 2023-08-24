@@ -9,6 +9,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import NewCardForm from '../NewCardForm/NewCardForm'
 import CardDescription from '../CardDescription/CardDescription';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import VoiceButton from '../VoiceButton/VoiceButton';
+
+
 
 export default function SingleCard(curCard) {
 
@@ -17,6 +20,7 @@ export default function SingleCard(curCard) {
   const [isActive, setIsActive] = useState(false)  
   const [isEdit, setIsEdit] = useState(false)  
   const dispatch = useDispatch()  
+  
 
   const handleRemove = () => {
     dispatch(removeCard(curCard))
@@ -39,14 +43,6 @@ export default function SingleCard(curCard) {
   const handleReset = () => {
     dispatch(editCard({...curCard, progress: 0}))
   }
-
-
-  const speech = (word) => {
-    speechSynthesis.speak(
-        new SpeechSynthesisUtterance(word)
-    )
-  }
-
 
 
   return (
@@ -74,15 +70,20 @@ export default function SingleCard(curCard) {
                     )
                 }
                 <CardContent>
-                    <Typography gutterBottom variant='h5' component='div'>
-                        {origin} 
-                        <VolumeUpIcon  onClick={() => speech(origin)}/>
-                    
-                    </Typography>
+                   <div
+                        style={{display: 'flex', justifyContent: 'space-between', gap: '15px'}} 
+                   >
+                        <Typography gutterBottom variant='h5' component='div'>
+                            {origin} 
+                        </Typography>
+                        <VoiceButton textToSpeech = {origin} />
+                   </div>
+
                     <Typography variant='h6' color='text.secondary'>
                         {translation}
                     </Typography>
                 </CardContent>
+
             </CardActionArea>
             
             <CardActions style={{display: 'flex', flex: '1 1 auto', alignItems: 'start'}}>

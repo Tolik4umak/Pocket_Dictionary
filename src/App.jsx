@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import LoginPage from './pages/AuthPage/AuthPage';
+import AuthPage from './pages/AuthPage/AuthPage';
 import MainPage from './pages/MainPage/MainPage';
 import FormPage from './pages/FormPage/FormPage';
 import SettingsPage from './pages/SettingsPage/SettingsPage';
@@ -61,7 +61,7 @@ function App() {
       
       <div style={{flex: '1 1 auto', overflow: 'auto'}}>
         <Routes>
-          <Route path='/Pocket_Dictionary' element={<LoginPage/>}/>
+          <Route path='/Pocket_Dictionary' element={<AuthPage/>}/>
           <Route path='/Pocket_Dictionary/main' element={<MainPage/>}/>
           <Route path='/Pocket_Dictionary/form' element={<FormPage/>}/>
           {currentUser && <Route path='/Pocket_Dictionary/settings' element={<SettingsPage/>}/>}

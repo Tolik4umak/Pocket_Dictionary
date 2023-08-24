@@ -5,6 +5,7 @@ import { Button, Typography } from '@mui/material'
 import Wrapper from '../../layout/Wrapper'
 import s from './style.module.css'
 import { editCard, refreshUserScore } from '../../store/userSlice'
+import VoiceButton from '../../components/VoiceButton/VoiceButton'
 
 export default function ExersiseSinglePage() {
 
@@ -91,9 +92,12 @@ export default function ExersiseSinglePage() {
             <span className={s.score_wrong}> {score.current.wrong}</span>
           </Typography>
 
-          <Typography variant="h5" component="h2" >
-            {type === 'origin' ? tempExercise.targetWord.origin: tempExercise.targetWord.translation}
-          </Typography>
+          <div style={{display: 'flex', alignItems: 'center', gap: '15px'}}>
+            <Typography variant="h5" component="h2" >
+              {type === 'origin' ? tempExercise.targetWord.origin: tempExercise.targetWord.translation}
+            </Typography>
+            {type === 'origin' && !answerMode && <VoiceButton textToSpeech={tempExercise.targetWord.origin} />}
+          </div>
 
           <div className={s.list}>
             {
