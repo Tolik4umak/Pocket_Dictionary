@@ -3,28 +3,28 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import { useSelector } from 'react-redux';
 
 
-const langs = [
-    {
-        num: 3,
-        lang: 'en'
-    },
-    {
-        num: 0,
-        lang: 'de'
-    },
-    {
-        num: 9,
-        lang: 'uk'
-    },
-    {
-        num: 15,
-        lang: 'ru'
-    },
-]
+
 
 
 export default function VoiceButton({sx, className, style, textToSpeech}) {
-
+    const langs = [
+        {
+            num: 3,
+            lang: 'en'
+        },
+        {
+            num: 0,
+            lang: 'de'
+        },
+        {
+            num: 9,
+            lang: 'uk'
+        },
+        {
+            num: 15,
+            lang: 'ru'
+        },
+    ]
 
   const btn = useRef()  
  
