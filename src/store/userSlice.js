@@ -11,7 +11,7 @@ export const userSlice = createSlice({
         authorizeUser: (state, {payload}) => {
             state.currentUser = payload
             state.list = localServices.readLocal()?.dictionary
-                            ?.filter(({userId}) => userId === payload.userId) ?? []
+                            ?.filter(({userId}) => userId === payload.userId)?.reverse() ?? []
         },
         removeUser: (state) => {
             state.currentUser = null

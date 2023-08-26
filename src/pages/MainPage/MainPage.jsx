@@ -11,16 +11,22 @@ export default function MainPage() {
 
   const currentUser = useSelector(state => state.user.currentUser)
   const currentList = useSelector(state => state.user.list)
-  const [filteredList, setFilteredList] = useState(currentList.slice().reverse())
+  const [filteredList, setFilteredList] = useState(currentList.slice())
 
   useEffect(() => {
-    setFilteredList(currentList.slice().reverse())
+    setFilteredList(currentList.slice())
   },[currentList])
 
   const handleList = (val) => {
     const newList = currentList.filter(({origin, translation})=> {
-      return origin.toLowerCase().startsWith(val.toLowerCase()) || translation.toLowerCase().startsWith(val.toLowerCase())
+      const originArr = origin.split(' ')
+      const translationArr = translation.split(' ')
+      const originSerch = originArr.some(item => item.toLowerCase().startsWith(val.toLowerCase())) 
+      const translationSerch = translationArr.some(item => item.toLowerCase().startsWith(val.toLowerCase())) 
+
+      return originSerch || translationSerch
     })
+
     setFilteredList(newList)
   }
 
