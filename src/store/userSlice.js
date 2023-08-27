@@ -11,14 +11,14 @@ export const userSlice = createSlice({
         authorizeUser: (state, {payload}) => {
             state.currentUser = payload
             state.list = localServices.readLocal()?.dictionary
-                            ?.filter(({userId}) => userId === payload.userId)?.reverse() ?? []
+                            ?.filter(({userId}) => userId === payload.userId) ?? []
         },
         removeUser: (state) => {
             state.currentUser = null
             state.list = []
         },
         addNewCard: (state, {payload}) => {
-            state.list.push(payload)
+            state.list.unshift(payload)
             localServices.addCardToLocal(payload)
         },
         addNewList: (state, {payload}) => {
@@ -26,7 +26,7 @@ export const userSlice = createSlice({
                 const target = state.list.find(item => item.id === card.id)
                 return !target
             })
-            state.list = [...state.list, ...list]
+            state.list = [ ...list, ...state.list]
             localServices.addListToLocal(payload)
         },
         removeCard: (state, {payload}) => {

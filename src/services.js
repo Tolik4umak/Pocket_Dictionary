@@ -15,7 +15,7 @@ const addCardToLocal = (card) => {
     const curLocal = readLocal()
     let newLocal = {}
     if(curLocal.dictionary){
-        newLocal = {...curLocal, dictionary: [...curLocal.dictionary, card]} 
+        newLocal = {...curLocal, dictionary: [card, ...curLocal.dictionary]} 
     }else{
         newLocal = {...curLocal, dictionary: [card]} 
     }
@@ -32,7 +32,7 @@ const addListToLocal = (list) => {
             return !target
         })
         console.log(newList)
-        newLocal = {...curLocal, dictionary: [...curLocal.dictionary, ...newList]} 
+        newLocal = {...curLocal, dictionary: [ ...newList, ...curLocal.dictionary]} 
     }else{
         newLocal = {...curLocal, dictionary: [...list]} 
     }
