@@ -31,7 +31,7 @@ export default function VoiceButton({sx, className, style, textToSpeech}) {
  
   const curLang = useSelector(({user}) => {
     const targert = langs.find(({lang}) => lang === user.currentUser.langFrom )
-    return targert?.num || 3
+    return targert?.num ?? 3
   })
   const [volume , setVolume] = useState(false)
 
